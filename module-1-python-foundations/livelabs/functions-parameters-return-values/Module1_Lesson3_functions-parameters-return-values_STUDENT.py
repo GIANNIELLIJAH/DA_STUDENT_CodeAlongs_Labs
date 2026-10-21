@@ -22,6 +22,14 @@ Complete each TODO as you go. A ____ blank is not valid Python, so
 fill it in before you run the file again.
 """
 
+
+def greet(user_name):
+    print("Welcome, " + user_name)
+    #print("Welcome ", user_name)
+    #print("Welcome f{user_name}")
+
+greet("Heather")
+greet("Micheal")
 # ===== 1. Define and Call, Live =====
 # Build a reusable greeting: one function, called twice, prints the welcome
 # message two times.
@@ -61,6 +69,8 @@ print('----- 3. Return, Live -----')
 # DISCUSS: A function should return a doubled value, but total + 1 raises
 #          TypeError. Using what you just saw in the Return, Live code, what's
 #          the most likely cause?
-# Your answer:
-#
-#
+def double(n):
+    return n * 2
+result = double(7)
+print(result + 1)
+print(double(7) + 1)

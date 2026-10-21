@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 """Data Challenge: Build It Once, Use It Again
 GitBook Quest 1.2: Build It Once, Use It Again
 
@@ -43,17 +43,17 @@ SUBMIT
 ############################################################################
 
 # 1. What does one row represent?
-# Your answer:
+# Your answer: One row represents the member sign up for either yoga, swim or pottery.
 #
 #
 
 # 2. Which fields hold numbers, and which hold text?
-# Your answer:
+# Your answer: fields labeled class_name and members are text, sessions are considered to hold numbers.
 #
 #
 
 # 3. What already looks wrong, missing or inconsistent?
-# Your answer:
+# Your answer: What looks wrong to me is the amount of classes attended at pottery, highly incomparable to the other sessions.
 #
 #
 
@@ -68,7 +68,7 @@ SUBMIT
 # 1. Predict two numbers by hand off the file. Total sessions across every
 #    class: add the third field down all 13 records. Total sessions for Swim
 #    only: add that same field, but only on the records whose class is Swim.
-#    Write both in a comment before you run anything.
+#    Write both in a comment before you run anything. every class is 45, swim is equal to15
 # 2. Write total_sessions(records) so it adds up the sessions column across
 #    every record in records and hands the total back with return, not
 #    print.
@@ -78,17 +78,16 @@ SUBMIT
 # The arithmetic is the same arithmetic a plain loop would do. What changes
 # is that the answer comes back to you instead of going to the screen.
 
-with open("data/rec_center_signups.txt") as f:
+with open("rec_center_signups.txt") as f:
     signups = [line for line in f.read().splitlines()
                if line and not line.startswith("#")]
 
 def total_sessions(records):
-    # TODO: add up the sessions column across every record in `records`
-    # TODO: hand the total back to whoever called this. Do not print it.
-    pass
+    return sum(int(record.split()[2]) for record in records)
 
-swim_only = []
-# TODO: fill swim_only with just the Swim records
+
+
+swim_only = [record for record in signups if record.split()[1] == "Swim"]
 
 print("every class:", total_sessions(signups))
 print("swim only:  ", total_sessions(swim_only))

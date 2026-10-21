@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 """Nested Loops & Conditionals
 Module 1: Python Foundations
 
@@ -22,15 +22,10 @@ Complete each TODO as you go. A ____ blank is not valid Python, so
 fill it in before you run the file again.
 """
 
-# ===== 1. Nested Loop, Live =====
-# Print all six row and column pairs, starting at 0 0 and ending at 1 2.
-#
-# DISCUSS: Before you run the Nested Loop code, imagine both loops used
-#          range(2). Put these outputs in the order Python prints them. A: 1 0.
-#          B: 0 0. C: 1 1. D: 0 1.
-# Your answer:
-#
-#
+for row in range(2,10,2):
+    print(row)
+
+
 print('----- 1. Nested Loop, Live -----')
 # TODO: write a nested loop that prints every (row, col)
 # pair for row in range(2) and col in range(3)
@@ -38,10 +33,8 @@ print('----- 1. Nested Loop, Live -----')
 # PREDICT before you run: Change the Nested Loop code to range(3) on the
 #                         outside and range(2) on the inside. How many lines
 #                         print?
-# Your answer:
-#
-#
-#
+operation = "ADD"
+quantity = -5
 # DISCUSS: With range(3) outside and range(2) inside, a classmate's version
 #          prints only 3 lines instead of 6. What's the most likely cause?
 # Your answer:
@@ -55,15 +48,15 @@ print('----- 1. Nested Loop, Live -----')
 print('----- 2. Nested Conditional, Live -----')
 # TODO: check operation first; if it's "ADD", nest a second
 # check confirming quantity is greater than 0
+
 operation = "ADD"
 quantity = -5
 
-# DISCUSS: Suppose the inner quantity check in the Nested Conditional code
-#          never seems to run. What should you trace first? Try it: set
-#          operation to "SEARCH" and run.
-# Your answer:
-#
-#
+if operation == "ADD":
+ if quantity > 0:
+  print("valid add")
+else:
+ print("invalid quantity")
 
 
 # ===== 3. Putting It Together: Loop + Nested Conditional =====
@@ -74,10 +67,22 @@ print('----- 3. Putting It Together: Loop + Nested Conditional -----')
 # operation and amount, then nest the ADD/quantity check
 # from the nested-conditional step inside the loop
 transactions = ["ADD 10", "REMOVE 3", "ADD -5"]
+for line in transactions:
+ operation, quantity = item.split()
+quantity = int(quantity) #str(), float()
+if operation == "ADD":
+  if quantity > 0:
+  print(item, "- valid")
+else:
+    print(item, - "- invalid quantity")
+    elif operation == "REMOVE":
+    print(item,  "- processing remove")
 
-# PREDICT before you run: In the Putting It Together code, which check flags
-#                         "ADD -5" as invalid: operation == "ADD", amount > 0,
-#                         or operation == "REMOVE"?
-# Your answer:
-#
-#
+
+  
+
+
+
+
+
+
