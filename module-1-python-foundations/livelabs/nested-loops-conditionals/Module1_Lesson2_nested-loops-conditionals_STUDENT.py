@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 """Nested Loops & Conditionals
 Module 1: Python Foundations
 
@@ -68,15 +68,15 @@ print('----- 3. Putting It Together: Loop + Nested Conditional -----')
 # from the nested-conditional step inside the loop
 transactions = ["ADD 10", "REMOVE 3", "ADD -5"]
 for line in transactions:
- operation, quantity = item.split()
-quantity = int(quantity) #str(), float()
-if operation == "ADD":
-  if quantity > 0:
-  print(item, "- valid")
-else:
-    print(item, - "- invalid quantity")
+    operation, quantity = line.split()
+    quantity = int(quantity)
+    if operation == "ADD":
+        if quantity > 0:
+            print(line, "- valid")
+        else:
+            print(line, "- invalid quantity")
     elif operation == "REMOVE":
-    print(item,  "- processing remove")
+        print(line, "- processing remove")
 
 
   
