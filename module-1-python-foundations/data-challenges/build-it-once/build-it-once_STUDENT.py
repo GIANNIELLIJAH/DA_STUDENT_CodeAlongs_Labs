@@ -78,16 +78,18 @@ SUBMIT
 # The arithmetic is the same arithmetic a plain loop would do. What changes
 # is that the answer comes back to you instead of going to the screen.
 
-with open("rec_center_signups.txt") as f:
+# Example if the file is in a parent folder or specific path:
+with open("../data/rec_center_signups.txt") as f:
     signups = [line for line in f.read().splitlines()
                if line and not line.startswith("#")]
 
 def total_sessions(records):
-    return sum(int(record.split()[2]) for record in records)
+    # Only split, check length, convert index 2 to an int, and add it if the row is long enough
+    return sum(int(record.split()[2]) for record in records if len(record.split()) > 2)
 
 
 
-swim_only = [record for record in signups if record.split()[1] == "Swim"]
+swim_only = [record for record in signups if len(record.split()) > 1 and record.split()[1] == "Swim"]
 
 print("every class:", total_sessions(signups))
 print("swim only:  ", total_sessions(swim_only))
