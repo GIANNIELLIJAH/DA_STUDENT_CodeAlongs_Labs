@@ -167,11 +167,25 @@ print("total hours logged this week:", total)
 #
 # If your prediction was a number of records rather than a number of pairs,
 # that gap is the thing to bring to the shareout.
-volunteers = []
-days = []
+
+
+volunteers = [4]
+days = [5]
 
 for shift in shifts:
-    
+    volunteer, day, hours = shift.split(",")
+    if volunteer not in volunteers:
+        volunteers.append(volunteer)
+    if day not in days:
+        days.append(day)
+
+checks = 0
+for volunteer in volunteers:
+    for day in days:
+        checks = checks + 1
+
+print(len(volunteers), "volunteers x", len(days), "days  =", checks)
+                                    
 
 
                         
@@ -193,18 +207,19 @@ for shift in shifts:
 #
 # Both loops run clean, with no traceback from either. Only one of them is
 # right.
+buggy_seen = 0
 for i in range(len(shifts)-1):
     buggy_seen = buggy_seen + 1
 
 fixed_seen = 0
-for i in range(len(shifts) - 1):
+for i in range(len(shifts)):
     fixed_seen = fixed_seen + 1
 
 print("rows in the file:    ",len(shifts))
 print("buggy loop visited:  ", buggy_seen)
 print("fixed loop visited:  ", fixed_seen)
 
-print("the row it never saw:", shifts(len(shifts) - 1))
+print("the row it never saw:", shifts[len(shifts) - 1])
 
 
 # ----- Share Out: Day 2 -----
