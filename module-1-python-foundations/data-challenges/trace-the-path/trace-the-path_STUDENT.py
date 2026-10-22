@@ -241,5 +241,5 @@ print("the row it never saw:", shifts[len(shifts) - 1])
 # Be ready to answer "why did you do it that way?"
 
 # Your notes for the share out:
-#
+# I did it this way because when I was coding I was running into a lot of problems and I understood the code but understanding the code, led me to troubleshoot with Gemini. This helped me understand hte function of len.
 #
