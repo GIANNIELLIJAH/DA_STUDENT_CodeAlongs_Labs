@@ -217,10 +217,12 @@ sessions_cutoff = 2
 # the steps after it can run.
 
 def log_signup(record, previous_member):
+    member = record.split(",")[0]
     # TODO: pull the member name out of `record`
     # TODO: print the previous member and this one on one line
     # TODO: return this member's name
-    pass
+    print("previous:", previous_member, "current:", previous_member)
+    return previous_member
 
 last_member = "nobody yet"
 # TODO: call log_signup on signups[0], then on signups[1], storing
@@ -230,11 +232,11 @@ last_seen = "nobody yet"
 
 def log_signup_broken(record):
     # Leave this body exactly as written. It is supposed to raise.
-    print("previous:", last_seen)
+   #print("previous:", last_seen)
     last_seen = record.split(",")[0]
     return last_seen
 
-log_signup_broken(signups[2])
+#log_signup_broken(signups[2])
 
 # Your answer:
 #
@@ -244,7 +246,7 @@ log_signup_broken(signups[2])
 # Last 15 minutes, back together as a class. Bring:
 #
 # - Which of the two functions you would trust in a file you did not write,
-#   and what in the call line decided it.
+#   and what in the call line decided it.  In line 219, it shows a valuable code to run without error; def log_signup(record, previous_member):
 # - The exception name and the variable it named, plus your own one-sentence
 #   account of the rule. Written before you looked anything up.
 # - Why the print line failed when it only reads last_seen, and what

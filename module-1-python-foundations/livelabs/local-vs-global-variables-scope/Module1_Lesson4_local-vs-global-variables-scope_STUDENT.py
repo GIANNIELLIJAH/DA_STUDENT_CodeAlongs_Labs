@@ -44,6 +44,12 @@ print('----- 1. Local Scope, Live -----')
 # Your answer:
 #
 #
+def make_total():
+    total = 100
+    return total
+
+x = make_total()
+print((x))
 
 
 # ===== 2. Reading a Global, Live =====
@@ -53,6 +59,14 @@ print('----- 2. Reading a Global, Live -----')
 # TODO: define tax_rate as a global, then write
 # price_with_tax(price) that reads it without taking it as
 # a parameter
+tax_rate = 0.08
+
+def price_with_tax(price):
+    x = price + (price * tax_rate)
+    return x 
+
+print (price_with_tax(5.00))
+print (price_with_tax(100.00))
 
 # DISCUSS: Copy the price_with_tax function from the Reading a Global code into
 #          a new file, without the tax_rate = 0.08 line. It worked here. Why
@@ -69,3 +83,15 @@ print('----- 3. Refactor: Global to Parameter -----')
 # TODO: rewrite price_with_tax so tax_rate is a parameter
 # instead of a global it secretly reads
 tax_rate = 0.08
+
+def price_with_tax(price, tax_rate):
+    return price + (price * tax_rate)
+
+print(price_with_tax(20, tax_rate))    
+
+
+def add():
+    count = 0
+    count = count + 1
+    return count
+print(add())
