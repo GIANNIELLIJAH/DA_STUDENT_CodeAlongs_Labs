@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 """Control Flow & Conditionals
 Module 1: Python Foundations
 
@@ -23,11 +23,10 @@ fill it in before you run the file again.
 """
 
 # ===== 1. If/Elif/Else, Live =====
-# Print "Too hot", "Too cold", or "Just right" based on the value of
-# temperature.
+# Print "Too hot", "Too cold", or "Just right" based on temperature.
 print('----- 1. If/Elif/Else, Live -----')
-# TODO: set temperature to any number, then write the
-# if/elif/else check yourself before revealing the answer
+# TODO: set temperature to any number
+# TODO: write the if/elif/else check yourself
 temperature = 71
 if temperature > 71:
     print("Too hot")
@@ -46,32 +45,25 @@ scores = [88, 92, 75, 100]
 
 
 # ===== 3. range() Generates Numbers to Loop Over =====
-# Count from 0 up to 4 with range(), one number per line. Notice it stops
-# before 5.
+# Count from 0 to 4 with range(). Notice it stops before 5.
 print('----- 3. range() Generates Numbers to Loop Over -----')
 for x in range(5):
     print(x)
 
 # PREDICT before you run: Change range(5) to range(3). What does the loop print
 #                         now?
-# Your answer: 
+# Your answer:
 #
 #
 
 
 # ===== 4. While Loop, Live =====
-# Count up from 0 and stop after 3, so the output is 0, 1, 2, 3 on separate
-# lines.
-#
-# DISCUSS: Before you write the While Loop, Live code, put these steps in the
-#          order Python runs them. A: Run the loop body. B: Check the condition
-#          again. C: Check the condition the first time.
+# Count up from 0 and stop after 3, printing 0, 1, 2, 3.
+# DISCUSS: Put these in order: A: run body. B: check again. C: first check.
 # Your answer:
 #
-#
 print('----- 4. While Loop, Live -----')
-# TODO: write a while loop that prints 0, 1, 2, 3 -
-# think carefully about the condition
+# TODO: write a while loop that prints 0, 1, 2, 3 (check the condition!)
 count = 0
 
 while count <= 3:
@@ -79,19 +71,16 @@ while count <= 3:
     count += 1
 
 
-# PREDICT before you run: In the While Loop, Live code above, change count <= 3
-#                         to count < 3. How many numbers print?
+# PREDICT before you run: Make it count < 3, not count <= 3. How many print?
 # Your answer:
-#
 #
 
 
 # ===== 5. Loop and Conditional, Together =====
-# Label each score: 90 or above gets "great job", and anything lower gets "keep
-# practicing".
+# Label each score: 90+ gets "great job", lower gets "keep practicing".
 print('----- 5. Loop and Conditional, Together -----')
-# TODO: loop over scores; for each one, print "great job"
-# if it's 90 or above, otherwise print "keep practicing"
+# TODO: loop over scores; print "great job" if a score is 90 or above
+# TODO: otherwise print "keep practicing"
 scores = [88, 92, 75, 100]
 for item in scores: 
     if item >= 90:
