@@ -115,13 +115,16 @@ print("swim only:  ", total_sessions(swim_only))
 # other only puts something on the screen.
 
 def count_long_bookings(records, minimum):
-    # TODO: count the records whose sessions number is `minimum` or more
-    # TODO: return the count
-    pass
+    count = 0
+    for record in records:
+        fields = record.split()
+        if len(fields) > 2 and int(fields[2]) >= minimum:
+            count += 1
+    return count
 
 def show_long_bookings(records, minimum):
-    # TODO: print a sentence with the same count in it. Only print.
-    pass
+        print("Bookings with at least", minimum, "sessions:",
+            count_long_bookings(records, minimum))
 
 print("returned:", count_long_bookings(signups, 4))
 print("returned:", count_long_bookings(signups, 2))
@@ -172,24 +175,28 @@ print("what show_long_bookings handed back:", handed_back)
 # 4. Call it again, unchanged, after sessions_cutoff becomes 2, and print
 #    that result too. The call line is identical both times.
 # 5. Print count_long_bookings(signups, 4) underneath for comparison.
-#
+#If I saw this in a file I didn't write, I would trust count_long_bookings much more than count_reaching_outside
 # Both versions run clean. Decide which of the two you would trust in a file
 # you did not write, and say what in the call line told you.
+def sessions_in(record):
+    return int(record.split(",")[2])
 
 sessions_cutoff = 4
 
 def count_reaching_outside(records):
-    # TODO: same count as count_long_bookings, but take NO minimum
-    # parameter. Read sessions_cutoff from outside the function instead.
-    pass
+    count = 0
+    for record in records:
+        if sessions_in(record) > sessions_cutoff:
+            count += 1
+    return count
 
 print("cutoff", sessions_cutoff, "gives", count_reaching_outside(signups))
 
 sessions_cutoff = 2
 
-# TODO: call count_reaching_outside(signups) again, unchanged, and print it
-# TODO: print count_long_bookings(signups, 4) underneath for comparison
+print("cutoff", sessions_cutoff, "gives", count_reaching_outside(signups))
 
+print("count_long_bookings with explicit cutoff 4 gives", count_long_bookings(signups, 4))
 # ===== Step 4: Pass the Last Member In and Out, Then Trigger an UnboundLocalError =====
 # The coordinator wants each sign-up printed next to the one before it. The
 # top half is yours to write. The bottom half is written for you, and is
@@ -215,18 +222,19 @@ sessions_cutoff = 2
 # This step is supposed to raise UnboundLocalError. Run it, read the
 # traceback, answer below, then put a # in front of the line that raises so
 # the steps after it can run.
+# Your answer:
+#
+#
 
 def log_signup(record, previous_member):
     member = record.split(",")[0]
-    # TODO: pull the member name out of `record`
-    # TODO: print the previous member and this one on one line
-    # TODO: return this member's name
-    print("previous:", previous_member, "current:", previous_member)
-    return previous_member
+    member = record.split()[0]
+    print("previous:", previous_member, "current:", member)
+    return member
 
 last_member = "nobody yet"
-# TODO: call log_signup on signups[0], then on signups[1], storing
-# what it returns back into last_member each time
+last_member = log_signup(signups[0], last_member)
+last_member = log_signup(signups[1], last_member)
 
 last_seen = "nobody yet"
 
@@ -236,11 +244,8 @@ def log_signup_broken(record):
     last_seen = record.split(",")[0]
     return last_seen
 
-#log_signup_broken(signups[2])
+log_signup_broken(signups[2])
 
-# Your answer:
-#
-#
 
 # ----- Share Out: Day 2 -----
 # Last 15 minutes, back together as a class. Bring:
@@ -286,17 +291,32 @@ def log_signup_broken(record):
 # Three function names. Everything else is yours.
 
 def sessions_in(record):
-    pass
+    # Accept both comma-delimited rows and whitespace-delimited rows.
+    fields = record.replace(",", " ").split()
+    if len(fields) <= 2:
+        raise ValueError("Signup record must include a sessions value")
+    try:
+        return int(fields[2])
+    except ValueError as error:
+        raise ValueError("Signup sessions value must be an integer") from error
 
 def signups_for(records, member):
-    pass
+        return [record for record in records
+            if record.split() and record.split()[0] == member]
 
 def total_for(records, member):
-    # This one should get its work done by calling the other two.
-    pass
-
+    return sum(sessions_in(record)
+               for record in signups_for(records, member))
+def total_for(records, member):
+    member_records = signups_for(records, member)
+    total_sessions = 0
+    for record in member_records:
+        total_sessions += sessions_in(record)
+    return total_sessions
 # TODO: print a line per member
-
+members = ["Nia", "Omar", "Tess", "Rafi", "Gwen"]
+for m in members:
+    print(m, total_for(signups, m))
 # ===== Step 6: Run total_for() on Five Inputs Nobody Asked For, Then Judge Each Answer =====
 # No new functions. Call the ones you already have on inputs nobody asked
 # for, and write a verdict beside each printed result.
@@ -320,8 +340,13 @@ def total_for(records, member):
 # No new functions. Call the ones you already have, on inputs nobody
 # asked for, and write a verdict beside each printed result.
 
-# TODO: an empty list
-# TODO: a list holding exactly one record
+print("Empty list result:", total_for([], "Nia"))
+
+print("Single record result:", total_for([signups[0]], "Nia"))
+
+
+
+
 # TODO: a member name that is not in the file at all
 # TODO: a name that differs from a real member's only by capitalization
 # TODO: then: do the per-member totals add up to the whole-file total?
@@ -342,7 +367,11 @@ def total_for(records, member):
 #   starting over. Half-finished thinking is what this slot is for.
 #
 # Be ready to answer "why did you do it that way?"
-
+#For the final steps, we split the logic into three separate functions instead of one big messy block:
+#signups_for(records, member)
+#sessions_in(record)
+#total_for(records, member)
 # Your notes for the share out:
 #
 #
+
