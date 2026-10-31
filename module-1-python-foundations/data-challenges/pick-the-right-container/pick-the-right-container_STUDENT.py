@@ -81,7 +81,9 @@ print("busiest card:", card_ids[busiest], "with", max(tap_counts), "taps")
 # TODO: assign `stations` to set(); loop over `taps` and .add() row[2]
 # TODO: assign `repeat_riders` to 0
 # TODO: loop over `taps_by_card`; add 1 to `repeat_riders` if a count is > 1
-
+#T001:
+#T040:
+#T999:
 print("distinct cards:", len(taps_by_card))
 print("lookups the dictionary needed:", lookups)
 print("unique stations:", len(stations), sorted(stations))

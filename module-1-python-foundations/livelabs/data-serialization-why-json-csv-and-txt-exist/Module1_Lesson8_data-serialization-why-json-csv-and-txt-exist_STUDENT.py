@@ -17,7 +17,11 @@ print('----- 2. Reading It Back -----')
 
 # PREDICT before you run: Rewrite notes.txt in "w" mode. Do old lines survive?
 # Your answer:
-#
+with open("notes.txt", "w") as f:
+    f.write("Restock staplers\n")
+    f.write("Restock printer paper\n")
+
+
 
 
 # ===== 3. A CSV File Is Just Plain Text =====
@@ -42,6 +46,14 @@ print('----- 4. Serializing a Record With json.dump() -----')
 # TODO: open "supply.json" in write mode; save the dict with json.dump()
 
 
+
+import json
+supply = {"Stapeler":12,"department": "Office", "name":"Stapler"}
+with open("supply.json", "w") as f:
+    json.dump(supply, f)
+print(supply)
+
+
 # ===== 5. Deserializing It Back With json.load() =====
 # Load supply.json back into Python and check that it is a real dict again.
 print('----- 5. Deserializing It Back With json.load() -----')
@@ -50,5 +62,9 @@ print('----- 5. Deserializing It Back With json.load() -----')
 # TODO: print supply["name"], then print type(supply)
 
 # PREDICT before you run: Dump a tuple to JSON and load it back. What type?
-# Your answer:
+# Your answer: list 
 #
+with open("supply.json") as f:
+   supply = json.load(f)
+print (supply["name"])
+print(type(supply))

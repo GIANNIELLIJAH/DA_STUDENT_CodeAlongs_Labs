@@ -6,8 +6,7 @@
 print('----- 1. Lists Let You Change Anything, Anytime -----')
 # TODO: create a list called pending_orders
 # TODO: put "ORD-1001", "ORD-1002" and "ORD-1003" in it
-
-
+#pending_orders =
 # TODO: append "ORD-1004" to pending_orders
 
 
@@ -39,27 +38,28 @@ print("----- 2. Once Locked In, a Tuple Can't Be Changed -----")
 # TODO: fill in each ____ blank
 print('----- 3. Only Hashable Values Can Be Dict Keys -----')
 product_stock = {"SKU-1001": 92, "SKU-2002": 34}
-product_stock["SKU-3003"] = 8
-product_stock["SKU-1001"] = 89
 
-for sku, count in product_stock.____():
+product_stock ["SKU-3003"] = 8
+product_stock ["SKU-1001"] = 89
+
+for sku, count in product_stock.items():
     print(f"{sku}: {count}")
-
-
+seen_ids = {101,102,103,103}
+seen_ids.add(103)
 # ===== 4. Sets Make Membership Checks Instant =====
 # Track IDs in a set, add a duplicate, and check if an ID is in the set.
 print('----- 4. Sets Make Membership Checks Instant -----')
 # TODO: create a set called seen_ids with 101, 102, and 103
-
+seen_ids
 
 # TODO: add 102 again - what happens? (sets have no duplicates)
-
-
+print(seen_ids)
 # TODO: add a new id, 104
 
 
 # TODO: print seen_ids, then check if 103 is in seen_ids
 
+print(103 in seen_ids)
 
 # ===== 5. The Cost of Checking a List Adds Up =====
 # This code times a search for one number in a list of 2 million numbers.
