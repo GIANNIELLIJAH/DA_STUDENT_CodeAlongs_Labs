@@ -28,11 +28,22 @@ fill it in before you run the file again.
 # Watch-only demo: the code is already here. Run it and read the output.
 # This is supposed to raise ValueError: run it, read the traceback, then
 # comment out the raising line so the rest of the file runs.
-print('----- 1. Watch This Crash -----')
-quantity = "abc"
-count = int(quantity)
-print("Converted:", count)
+"""
 
+print('----- 1. Watch This Crash -----')
+try:
+    quantity = [5, 4 , 3]
+    count = int(quantity)
+    print("Converted:", count)
+except ValueError as err:
+    print(f"Raised ValueErorr as expected: {err}")
+except Exception as err:
+    print(f"FAILED: expected ValueError got {type(err).__name__}: {err} ")
+    raise SystemExit(1)
+else:
+    print("FAILED: expected ValueError, but nothing was raised")
+    raise SystemExit(1)
+"""
 # PREDICT before you run: This crash is a ValueError. Which error would "5" + 3
 #                         raise? ValueError, TypeError or NameError?
 # Your answer:
@@ -52,10 +63,17 @@ print("Converted:", count)
 # crashing.
 print('----- 2. Catching the Crash -----')
 # TODO: set quantity = "abc"
+quantity = "abc"
 # TODO: inside a try block, convert it to int and print "Converted:"
+try: 
+    x = int(quantity)
+    print("Converted:", x)
 # plus the result
 # TODO: in an except ValueError block, print "That's not a valid
 # number."
+except ValueError: 
+    print("That's not a valid number")
+
 
 # DISCUSS: In the door-handle analogy, which part of this code is reacting once
 #          you find the door locked?
@@ -74,8 +92,16 @@ print('----- 2. Catching the Crash -----')
 # message, and keeps going.
 print('----- 3. Putting It Together: Two except Clauses -----')
 # TODO: define validate_batch(lines)
-# TODO: for each line, inside a try block: split on ",", print
-# "OK:" with fields[1] and int(fields[2])
+def validate_batch(lines):
+    for line in lines:
+        try:
+            fields = line.split(",")
+            print("OK:", fields[1], int(fields[2]))
+        except IndexError:
+            print("Bad Format:", line)
+        except ValueError:
+            print("Bad quantity:", line)
+
 # TODO: add an except IndexError clause printing "Bad format:" + line
 # TODO: add an except ValueError clause printing "Bad quantity:" + line
 
