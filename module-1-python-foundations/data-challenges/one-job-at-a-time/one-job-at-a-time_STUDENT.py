@@ -96,7 +96,7 @@ def export_summary(summary, path):
 
 
 def run_pipeline(in_path, out_path, summarize):
-    """Validate donations, summarize the valid records, and export the result."""
+    """Validate donations, summarize the valid records, and export the result"""
     kept = []
     for record in read_donations(in_path):
         ok, _reason = validate_donation(record)
@@ -120,7 +120,7 @@ for func in [read_donations, validate_donation, summarize_donations,
 
 # Step 4: Swap In `summarize_by_day()` and Count the Functions You Edited
 def summarize_by_day(valid_records):
-    """Summarize valid donations by day and total pounds."""
+    """Summarize valid donations by day and total pounds"""
     by_day = {}
     total_pounds = 0.0
     count = 0
