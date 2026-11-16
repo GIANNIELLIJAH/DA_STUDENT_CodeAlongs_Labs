@@ -5,7 +5,7 @@ import json
 
 DATA_FILE = "bike_stations.json"  # edit the filepath with the data
 
-with open(DATA_FILE) as f:
+with open("../data/" + DATA_FILE) as f:    
     stations = json.load(f)
 
 
@@ -13,17 +13,24 @@ with open(DATA_FILE) as f:
 
 # Step 1: Reproduce the Parallel-List Bug and Name the Wrong Stations
 # TODO: assign `names` and `bikes` to two empty lists
+names = []
+bikes = []
 # TODO: loop over `stations`; append each one's "name" to `names`
-# TODO: append the same station's "bikes_available" to `bikes`
+for station in stations:
+    names.append(station['name'])
+    bikes.append(station['bikes_available'])
+
 names.pop(2)
 
 print("stations in the file:", len(stations))
 # TODO: loop over range(len(names)); print names[i], "|", bikes[i], "bikes"
+for i in range(len(names)):
+    print(names[i], "|", bikes[i], "bikes")
 
 # Step 1, answer 1:
-#
+#each station contains an attribute name, bikes,, sation is the object in the string.
 # Step 1, answer 2:
-#
+#name and bikes have empty lists.
 # Step 1, answer 3:
 #
 
@@ -34,14 +41,41 @@ class Station:
     # TODO: in __init__, assign each parameter to self.<same name>
     # TODO: add a parameter and self.<name> for each extra field you agreed
     # TODO: add needs_restock(self): True if bikes_available < capacity / 4
-    pass
+    def __init__(self,station_id, name, capacity, bikes_available, needs_maintenance, ):
+        self.name = name
+        self.capacity = capacity
+        self.bikes_available = bikes_available
+        self.needs_maintenance = needs_maintenance
+    def needs_restock(self):
+        return self.bikes_available < self.capacity / 4
+
+    def __str__(self) -> str:
+        return f"{self.name}: {self.bikes_available} of {self.capacity} bikes"
+
+    def __repr__(self) -> str:
+        return f"Station({self.name!r}, {self.bikes_available})"
 
 
-# TODO: assign `fleet` to []; loop over `stations` as `s`
-# TODO: append Station(s["name"], s["capacity"], s["bikes_available"])
-# TODO: assign `busy`, `quiet` to two stations with equal needs_restock()
-# TODO: print both needs_restock() answers
-# TODO: set busy.bikes_available to 0, then print both answers again
+fleet = [
+    Station(
+        s.get("station_id"),
+        s["name"],
+        s["capacity"],
+        s["bikes_available"],
+        s.get("needs_maintenance", False),
+    )
+    for s in stations
+]
+
+busy, quiet = next(
+    (first, second)
+    for i, first in enumerate(fleet)
+    for second in fleet[i + 1 :]
+    if first.needs_restock() == second.needs_restock()
+)
+print(busy.needs_restock(), quiet.needs_restock())
+busy.bikes_available = 0
+print(busy.needs_restock(), quiet.needs_restock())
 
 # Step 2, answer 1:
 #
@@ -59,15 +93,6 @@ class Station:
 print(fleet[0])
 print(fleet[:2])
 
-
-# TODO: copy your Station class from Step 2 here
-# TODO: add __str__(self) to return text like "Grand Army Plaza: 6 of 48 bikes"
-# TODO: build it from self.name, self.bikes_available and self.capacity
-# TODO: rebuild `fleet` from this class with the same loop as Step 2
-
-print(fleet[0])
-print(fleet[:2])
-
 # Step 3, answer 1:
 #
 # Step 3, answer 2:
@@ -75,11 +100,7 @@ print(fleet[:2])
 
 
 # Step 4: Add `__repr__` and Print the Van List for You and the Dispatcher
-# TODO: copy your Station class from Step 3 here
-# TODO: add __repr__(self) to return text like "Station('Grand Army Plaza', 6)"
-# TODO: rebuild `fleet` from this class with the same loop as Step 2
-# TODO: assign `van_list` to []; loop over `fleet`
-# TODO: append each station whose needs_restock() returns True to `van_list`
+van_list = [station for station in fleet if station.needs_restock()]
 
 print(van_list)
 for station in van_list:
