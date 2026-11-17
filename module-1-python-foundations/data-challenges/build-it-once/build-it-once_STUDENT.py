@@ -222,6 +222,9 @@ print("count_long_bookings with explicit cutoff 4 gives", count_long_bookings(si
 # This step is supposed to raise UnboundLocalError. Run it, read the
 # traceback, answer below, then put a # in front of the line that raises so
 # the steps after it can run.
+# Your answer:
+#
+#
 
 def log_signup(record, previous_member):
     member = record.split(",")[0]
@@ -243,9 +246,6 @@ def log_signup_broken(record):
 
 log_signup_broken(signups[2])
 
-# Your answer:
-#
-#
 
 # ----- Share Out: Day 2 -----
 # Last 15 minutes, back together as a class. Bring:
@@ -374,3 +374,4 @@ print("Single record result:", total_for([signups[0]], "Nia"))
 # Your notes for the share out:
 #
 #
+

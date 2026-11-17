@@ -164,9 +164,17 @@ print("round trip identical:", reloaded["taps_by_card"] == taps_by_card)
 
 # Step 6, answer 1: 
 # JSON converts dictionary keys (like card IDs) from integers/other types to strings 
+<<<<<<< HEAD
 # during serialization, which is why round-trip equality might fail or require key conversion.
 
 # Step 6, answer 2: 
 # Tuples do not run a JSON round trip because JSON only supports lists
 # tuples are reloaded back as Python lists.
+=======
+# during serialization, which is why round trip may or may not fail or require key conversion
+
+# Step 6, answer 2: 
+# Tuples do not run a JSON round trip because JSON only supports lists
+# tuples are reloaded back as Python lists
+>>>>>>> 850624dfb955fe0d453d5a01260891e83d085550
 #

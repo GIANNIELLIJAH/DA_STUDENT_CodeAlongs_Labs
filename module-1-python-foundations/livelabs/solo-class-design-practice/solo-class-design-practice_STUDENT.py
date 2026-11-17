@@ -31,25 +31,43 @@ SUBMIT
 # ===== Step 1: Read the Stakeholder Need =====
 # A new stakeholder need. Not the board-game or office-supply domain from
 # lecture, and not one of the project's own 4 scenarios.
-import json
-DATA_FILE = "solo-class-design-practice_STUDENT.py"
-with open ("../solo-class-design-practice" + DATA_FILE ) as S:
- S = json.load()
-" wrenches, drills, screws, flatheads, screwdrivers, nuts, bolts, screwdrivers"
+# The coordinator needs to track tool inventory, whether each tool is
+# available, and the condition of each tool before it is used.
 
-tools_name = ["wrenches", "drills", "screws", "flatheads", "screwdrivers", "nuts", "bolts"]
-tools_availability = {}
-tools_condition = 
-tools
+tools = ["wrenches", "drills", "screws", "flatheads", "screwdrivers", "nuts", "bolts"]
+tools_availability = {
+    "wrenches": True,
+    "drills": False,
+    "screws": True,
+    "flatheads": True,
+    "screwdrivers": True,
+    "nuts": True,
+    "bolts": False,
+}
+tools_condition = {
+    "wrenches": "good",
+    "drills": "needs battery",
+    "screws": "new",
+    "flatheads": "worn",
+    "screwdrivers": "good",
+    "nuts": "new",
+    "bolts": "rusted",
+}
 
 # Your answer:
-#
+# I used a list for the tool names and dictionaries for availability and
+# condition so each tool can be tracked individually by name.
 #
 
 # ===== Step 2: Decide Your Attributes, Each With a Reason From the Scenario =====
+# name: identifies which tool the record is about.
+# available: the coordinator needs to know if the tool can be used right now.
+# condition: the stakeholder needs to know whether the tool is usable or worn out.
 
 # Your answer:
-#
+# name explains what tool is being tracked.
+# available comes from the need to know if a tool is ready to be borrowed.
+# condition comes from the need to know whether a tool is safe or usable.
 #
 
 # ===== Step 3: Write __init__ and a Method, From Scratch =====
@@ -58,18 +76,39 @@ tools
 # right. The test is whether each one traces back to the stakeholder
 # paragraph.
 
-# TODO: Write __init__ and a Method, From Scratch
+class Tool:
+    def __init__(self, name, condition, available):
+        self.name = name
+        self.condition = condition
+        self.available = available
+
+    def is_ready_for_use(self):
+        usable_conditions = {"good", "new", "like new"}
+        return self.available and self.condition.lower() in usable_conditions
 
 # ===== Step 4: Instantiate 2+ Objects, Confirm Independent Storage =====
 # The same proof Day 13's lecture asked for, now on a class you designed
 # yourself. Predict what each print() will show before you run it.
 
-# TODO: Instantiate 2+ Objects, Confirm Independent Storage
+wrench = Tool("wrench", "good", True)
+drill = Tool("drill", "needs battery", False)
+
+print(wrench.name, wrench.condition, wrench.available)
+print(drill.name, drill.condition, drill.available)
+print(wrench.is_ready_for_use())
+print(drill.is_ready_for_use())
+
+wrench.available = False
+print(wrench.available, drill.available)
+print(wrench.is_ready_for_use(), drill.is_ready_for_use())
 
 # ===== Step 5: Justify Your Design Choice in 2-3 Sentences =====
 
 # Your answer:
-#
+# I designed the class around the three facts the coordinator needs most: the
+# tool's name, whether it is available, and whether it is in usable condition.
+# I rejected adding more general metadata because the stakeholder's request is
+# focused on inventory readiness, not broad catalog details.
 #
 
 # ----- Share Out -----

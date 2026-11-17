@@ -141,4 +141,8 @@ print("average days open:", round(total_days / counted, 1))
 # Any row with invalid or negative numbers got safely diverted into our skip counter with a clear explanation
 #
 # Step 4, answer 3:
+<<<<<<< HEAD
 # We successfully processed all clean records, resulting in 11 counted rows and 4 skipped rows with a final correct average
+=======
+# We successfully processed all clean records, resulting in 11 counted rows and 4 skipped rows with a final correct average
+>>>>>>> 850624dfb955fe0d453d5a01260891e83d085550

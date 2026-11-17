@@ -32,7 +32,7 @@ for i in range(len(names)):
 # Step 1, answer 2:
 #name and bikes have empty lists.
 # Step 1, answer 3:
-#
+#printed name and bikes
 
 
 # Step 2: Define the Station Class and Prove Two Instances Are Independent
@@ -78,11 +78,11 @@ busy.bikes_available = 0
 print(busy.needs_restock(), quiet.needs_restock())
 
 # Step 2, answer 1:
-#
+#created a fleet list for name capacity bikes available and scheduled maintenance
 # Step 2, answer 2:
-#
+#printed needed restocks in the options
 # Step 2, answer 3:
-#
+# busy and quiet are our objects that go within the list.
 # Step 2, answer 4:
 #
 
@@ -94,9 +94,9 @@ print(fleet[0])
 print(fleet[:2])
 
 # Step 3, answer 1:
-#
+# printed the lists within steps 2.
 # Step 3, answer 2:
-#
+#prints out the enumerated objects.
 
 
 # Step 4: Add `__repr__` and Print the Van List for You and the Dispatcher
@@ -107,8 +107,9 @@ for station in van_list:
     print(station)
 
 # Step 4, answer 1:
-#
+# printed the last and final which were the lists we created in steps 2 and 3.
 # Step 4, answer 2:
-#
+# if they needed restock within the stations.
 # Step 4, answer 3:
-#
+#Printed the stations themselves.
+
