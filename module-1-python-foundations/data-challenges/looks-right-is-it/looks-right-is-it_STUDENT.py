@@ -17,26 +17,25 @@ with open(DATA_FILE) as f:
 # TODO: wrap that value in int() so add_hours() adds a number
 # TODO: delete the print(repr(hours)) line once Rosa's total is right
 def add_hours(total, hours):
+   
     return total + hours
-
-
 def weekly_hours(lines, emp_id):
     total = 0
     for row in lines[1:]:
         parts = row.split(",")
         if parts[0] == emp_id:
-            total = add_hours(total, parts[2])
+            total = add_hours(total, int(parts[3]))
     return total
 
 
 print("Rosa Alvarez, weekly hours:", weekly_hours(lines, "E101"))
 
 # Step 1, answer 1:
-#
+# Rosa Alvarez's weekly hours are 48 this week.
 # Step 1, answer 2:
-#
+#The last line tells me the error and where it comes from
 # Step 1, answer 3:
-#
+#the error happened in add hours and weekly hours.
 
 
 # Step 2: Trace the ZeroDivisionError Back to the Hand-Typed Staff List
@@ -58,14 +57,14 @@ for emp_id in staff:
     hours = weekly_hours(lines, emp_id)
     days = days_worked(lines, emp_id)
     print(emp_id, "| hours:", hours, "| days:", days,
-          "| average per day:", hours / days)
+          "| average per day:", hours, days)
 
 # Step 2, answer 1:
-#
+#In the data file there are 5 employees.
 # Step 2, answer 2:
-#
+#Three Employee lines printed before it crashed E106 is when it crashed.
 # Step 2, answer 3:
-#
+# The bug was in the staff list because E106 isnt in the file.
 
 
 # ===== Day 2 =====
@@ -96,11 +95,11 @@ for emp in employee_ids:
     print(emp, name, "| weekly hours:", total)
 
 # Step 3, answer 1:
-#
+#Rosa worked 40 hours Mei works 32 hours both are weekly.
 # Step 3, answer 2:
-#
+#Total kept adding the previous employees hours because the total = 0 was kept outside the index
 # Step 3, answer 3:
-#
+#Rosa's hours were correct because there was a typo in the hours for the other workers.
 
 
 # Step 4: Fix Two Overtime Bugs That Overpay the Firm by $1,810 a Week
@@ -108,8 +107,8 @@ for emp in employee_ids:
 # TODO: fix weekly_pay() so it follows the handbook rule word for word
 # TODO: fix the other line that compares `total` against 40 the same way
 def weekly_pay(hours, rate):
-    if hours >= 40:
-        return hours * rate * 1.5
+    if hours > 40:
+        return 40 * rate + (hours - 40) * rate  * 1.5
     return hours * rate
 
 
@@ -124,18 +123,19 @@ for emp in employee_ids:
             name = r["name"]
             rate = r["rate"]
             total = total + r["hours"]
-    if total >= 40:
+    if total > 40:
         owed_overtime = owed_overtime + 1
     pay = weekly_pay(total, rate)
     payroll = payroll + pay
-    print(f"{name:16} {total:3} hrs  ${pay:>9,.2f}")
+    print(f"{name, 16} {total, 3} hrs  ${pay:>9,.2f}")
 
 print("employees owed overtime:", owed_overtime)
-print(f"TOTAL PAYROLL: ${payroll:,.2f}")
+print(f"TOTAL PAYROLL: ${payroll: 2f}")
 
 # Step 4, answer 1:
-#
+#Darnell: $1543.50, Mei:$896, Rosa:$960
 # Step 4, answer 2:
-#
+# I fixed weekly hours so that everyone gets paid, I also changed 
 # Step 4, answer 3:
-#
+# changing the less than or equal to provides a wage and adds overtime hours as well. 
+
