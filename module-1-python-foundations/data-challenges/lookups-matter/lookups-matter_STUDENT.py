@@ -27,11 +27,11 @@ print("found:", row["name"], "at", row["home_branch"])
 print("comparisons:", count)
 
 # Step 1, answer 1:
-# find_linear returns the matching row and the number of rows checked.
+# find_linear returns the matching row and the number of rows checked in a o(n) fashion.
 
 
 # Step 2: Total the Comparisons for All 20 Swipes in `door_checkins.txt`
-with open(DATA_FILE) as f:
+with open(CHECKINS_FILE) as f:
     swipes = f.read().splitlines()
 
 linear_total = 0
@@ -51,13 +51,23 @@ print("swipes:", len(swipes), "| not members:", not_members)
 print("linear total comparisons:", linear_total)
 
 # Step 2, answer 1:
-# Linear search requires one row check per position examined until a match or end.
+# The search in which swipes there are in the rows of Linear search requires one row check per position examined until a match or end.
 # Step 2, answer 2:
+# The code itself explains the total of rows within if row returns as NONE then there will result in a check of the entire set of data.
+# Linear search requires one row check per position examined until a match or end.
 # A swipe with no member may require checks across the entire directory.
+# The count will raise a sum to each non member row by 1.
+
 
 
 # Step 3: Build `members_by_id` and Find the Swipe Where It Pays Off
+
+
+
 members_by_id = {}
+
+
+
 build_steps = 0
 
 for row in members:
@@ -92,6 +102,11 @@ print("dict pays off at swipe:", pays_off_at)
 print("morning totals | linear:", linear_running, "| dict:", dict_running)
 
 # Step 3, answer 1:
+# Building the dictionary costs one step for each member directory row.             
+# Prediction: Runs the amount of swipes by adding one to each corresponding member ID.
+# Step 3, answer 2:
+# Each dictionary lookup costs one counted lookup, plus the earlier build cost.    
+# Prediction: The thing that costs the most is the pays at the swipes in which the linear scan runs.
 # Building the dictionary costs one step for each member directory row.
 # Step 3, answer 2:
 # Each dictionary lookup costs one counted lookup, plus the earlier build cost.
@@ -113,8 +128,8 @@ print("whole morning | linear:", linear_running, "| dict:", dict_running,
       "| ratio:", ratio)
 
 verdict = (
-    "The claim is partly true: dictionary lookups use one comparison per swipe "
-    "but include a one-time build cost, so they do not instantly beat linear "
+    "The claim is partly true: dictionary lookups use one comparison per swipe"
+    "but include a one-time build cost, so they do not instantly surpass linear"
     "search until enough swipes have been processed."
 )
 print("VERDICT:", verdict)
