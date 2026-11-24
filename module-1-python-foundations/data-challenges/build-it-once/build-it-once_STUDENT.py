@@ -133,8 +133,8 @@ handed_back = show_long_bookings(signups, 4)
 print("what show_long_bookings handed back:", handed_back)
 
 # Your answer:
-#
-#
+#the return function returns the length of fields (len) and the integer placed within the fields (int)
+#the print function explains the count and the returned values for each given variable hence signups.
 
 # ----- Share Out: Day 1 -----
 # Last 15 minutes, back together as a class. Bring:
@@ -152,8 +152,8 @@ print("what show_long_bookings handed back:", handed_back)
 # Be ready to answer "why did you do it that way?"
 
 # Your notes for the share out:
-#
-#
+#NA
+#NA
 
 ############################################################################
 #  DAY 2
@@ -223,7 +223,7 @@ print("count_long_bookings with explicit cutoff 4 gives", count_long_bookings(si
 # traceback, answer below, then put a # in front of the line that raises so
 # the steps after it can run.
 # Your answer:
-#
+# in this code were defining the log signups for the records in each member we will continue to use this in the entire line of code.
 #
 
 def log_signup(record, previous_member):
@@ -262,8 +262,8 @@ log_signup_broken(signups[2])
 # Be ready to answer "why did you do it that way?"
 
 # Your notes for the share out:
-#
-#
+#NA
+#NA
 
 ############################################################################
 #  DAY 3
@@ -368,10 +368,19 @@ print("Single record result:", total_for([signups[0]], "Nia"))
 #
 # Be ready to answer "why did you do it that way?"
 #For the final steps, we split the logic into three separate functions instead of one big messy block:
-#signups_for(records, member)
-#sessions_in(record)
-#total_for(records, member)
+#using the .split(",") function we can print all three sessions into 3.
+signups_for(records, member)
+sessions_in(record)
+sessions_in(record)
+print(signups_for(records, member))
+print(sessions_in(record))
+print(sessions_in(record))
+
+
+
 # Your notes for the share out:
+# This prints/calls all the sessions in the record, and members within each record.
 #
-#
+
+
 
