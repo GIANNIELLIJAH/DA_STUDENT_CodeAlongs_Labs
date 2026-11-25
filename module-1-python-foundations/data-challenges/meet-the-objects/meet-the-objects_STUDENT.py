@@ -111,5 +111,5 @@ for station in van_list:
 # Step 4, answer 2:
 # if they needed restock within the stations.
 # Step 4, answer 3:
-#Printed the stations themselves.
+#Printed the stations themselves to show the list hence the van_list index.
 
